@@ -9,3 +9,7 @@
 dialog form div {
     padding: 10px;
 }
+
+.booksArea {
+    display: flex;
+}

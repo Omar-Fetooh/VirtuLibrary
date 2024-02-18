@@ -2,6 +2,12 @@ const booksArea = document.querySelector('.booksArea')
 const newBookButton = document.querySelector('#new-book')
 const modal = document.querySelector('dialog')
 const closeButton = document.querySelector('#close-button')
+const confirmButton = document.querySelector('#confirm-button')
+// ========================================================================
+const inputAuthor = document.querySelector('dialog form #author')
+const inputTitle = document.querySelector('dialog form #title')
+const inputPages = document.querySelector('dialog form #no-pages')
+const inputStatus = document.querySelector('dialog form #status')
 
 const myLibrary = [];
 
@@ -14,7 +20,10 @@ function Book(author, title, noOfPages, readStatus) {
 }
 
 function addBookToLibrary() {
-
+    const newBook = new Book(inputAuthor.value, inputTitle.value, parseInt(inputPages.value), inputStatus.value);
+    myLibrary.push(newBook);
+    // console.log(newBook)
+    addBookForDisplay(newBook)
 }
 
 const book0 = new Book('omar Fetooh', 'dream land', 120, 'read')
@@ -22,8 +31,7 @@ const book1 = new Book('omar Fetooh', 'wonderful Life', 180, 'read')
 
 myLibrary.push(book0, book1);
 
-
-myLibrary.forEach((book) => {
+function addBookForDisplay(book) {
     const newCard = document.createElement('div');
     newCard.classList.add('card');
 
@@ -43,15 +51,27 @@ myLibrary.forEach((book) => {
     newCard.appendChild(titleDisplay);
     newCard.appendChild(npagesDisplay);
     newCard.appendChild(statusDisplay);
-})
+}
+
+function display() {
+    myLibrary.forEach((book) => {
+        addBookForDisplay(book)
+    })
+}
 
 
-newBookButton.addEventListener('click', (event) => {
+newBookButton.addEventListener('click', () => {
     modal.showModal()
-    event.preventDefault();
 })
 
+confirmButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    addBookToLibrary();
+    modal.close();
+})
 
 closeButton.addEventListener('click', () => {
     modal.close();
 })
+
+display();
