@@ -1,4 +1,7 @@
 const booksArea = document.querySelector('.booksArea')
+const newBookButton = document.querySelector('#new-book')
+const modal = document.querySelector('dialog')
+const closeButton = document.querySelector('#close-button')
 
 const myLibrary = [];
 
@@ -40,4 +43,15 @@ myLibrary.forEach((book) => {
     newCard.appendChild(titleDisplay);
     newCard.appendChild(npagesDisplay);
     newCard.appendChild(statusDisplay);
+})
+
+
+newBookButton.addEventListener('click', (event) => {
+    modal.showModal()
+    event.preventDefault();
+})
+
+
+closeButton.addEventListener('click', () => {
+    modal.close();
 })
