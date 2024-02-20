@@ -17,6 +17,7 @@ function Book(author, title, noOfPages, readStatus) {
     this.title = title;
     this.noOfPages = noOfPages;
     this.readStatus = readStatus;
+    this.order = myLibrary.length;
 }
 
 function addBookToLibrary() {
@@ -27,13 +28,19 @@ function addBookToLibrary() {
 }
 
 const book0 = new Book('omar Fetooh', 'dream land', 120, 'read')
+myLibrary.push(book0)
 const book1 = new Book('omar Fetooh', 'wonderful Life', 180, 'read')
-
-myLibrary.push(book0, book1);
+myLibrary.push(book1);
 
 function addBookForDisplay(book) {
     const newCard = document.createElement('div');
     newCard.classList.add('card');
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', () => {
+        deleteBook(book, deleteButton.parentElement);
+    })
 
     const authorDisplay = document.createElement('div');
     const titleDisplay = document.createElement('div');
@@ -51,6 +58,7 @@ function addBookForDisplay(book) {
     newCard.appendChild(titleDisplay);
     newCard.appendChild(npagesDisplay);
     newCard.appendChild(statusDisplay);
+    newCard.appendChild(deleteButton);
 }
 
 function display() {
@@ -58,7 +66,6 @@ function display() {
         addBookForDisplay(book)
     })
 }
-
 
 newBookButton.addEventListener('click', () => {
     modal.showModal()
@@ -75,3 +82,10 @@ closeButton.addEventListener('click', () => {
 })
 
 display();
+
+function deleteBook(book, domEle) {
+    myLibrary.splice(book.order, 1);
+    booksArea.removeChild(domEle)
+}
+
+// const deletedElement = document.querySelector('.booksArea div.card #order').innerTexts
