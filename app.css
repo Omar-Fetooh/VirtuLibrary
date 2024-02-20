@@ -166,7 +166,7 @@ h1 {
     font-weight: 500;
     background-color: #eae2b7;
     border-radius: 10%;
-    box-shadow: -1px 10px 39px -15px greenyellow;
+    box-shadow: -1px 10px 39px -15px rgba(0, 0, 0, 0.75);
 
 }
 

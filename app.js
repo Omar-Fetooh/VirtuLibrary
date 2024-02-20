@@ -81,6 +81,7 @@ function addBookForDisplay(book) {
 
     if (book.readStatus === 'Read') {
         readStatusButton.style.backgroundColor = "#80ed99";
+        newCard.style.boxShadow = ' -1px 10px 39px -15px greenyellow';
     }
     else {
         readStatusButton.style.backgroundColor = '#edede9';
