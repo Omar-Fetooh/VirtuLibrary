@@ -8,6 +8,10 @@ const inputAuthor = document.querySelector('dialog form #author')
 const inputTitle = document.querySelector('dialog form #title')
 const inputPages = document.querySelector('dialog form #no-pages')
 const inputStatus = document.querySelector('dialog form #status')
+
+const allCards = document.querySelectorAll('.card');
+
+
 const myLibrary = [];
 
 //Object Constructor
@@ -23,7 +27,6 @@ function Book(author, title, noOfPages, readStatus) {
     }
     else {
         this.readStatus = "Not Read";
-
     }
 }
 
@@ -45,25 +48,21 @@ function createLabels(book, newCard) {
     const authorDisplay = document.createElement('div');
     const titleDisplay = document.createElement('div');
     const npagesDisplay = document.createElement('div');
-    const statusDisplay = document.createElement('div');
 
     authorDisplay.innerText = `Book Author:  ${book.author}`
     titleDisplay.innerText = `Book Title:  ${book.title}  `
     npagesDisplay.innerText = `Number of Pages:  ${book.noOfPages}  `
-    statusDisplay.innerText = `Status:  ${book.readStatus}  `
+
 
     newCard.appendChild(authorDisplay);
     newCard.appendChild(titleDisplay);
     newCard.appendChild(npagesDisplay);
-    newCard.appendChild(statusDisplay);
-
 
 }
 
 function addBookForDisplay(book) {
     const newCard = document.createElement('div');
     newCard.classList.add('card');
-
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
@@ -85,13 +84,14 @@ function addBookForDisplay(book) {
     }
     else {
         readStatusButton.style.backgroundColor = '#edede9';
+        newCard.style.boxShadow = ' -1px 10px 39px -15px rgba(0, 0, 0, 0.75)';
     }
 
+
     readStatusButton.addEventListener('click', () => {
-        toogleReading(book, readStatusButton, statusDisplay);
+        toogleReading(book, readStatusButton, newCard);
     })
 
-    const statusDisplay = document.querySelector('.card div:nth-of-type(4)')
 
 }
 
@@ -123,17 +123,18 @@ function deleteBook(book, domEle) {
 }
 
 function toogleReading(book, domEle, newCard) {
-    const lastChild = document.querySelector('newCard');
-    console.log(lastChild);
     if (book.readStatus === 'Read') {
         book.readStatus = "Not Read";
         domEle.textContent = "Not Read"
         domEle.style.backgroundColor = "#edede9";
+        newCard.style.boxShadow = ' -1px 10px 39px -15px rgba(0, 0, 0, 0.75)';
     }
     else {
         book.readStatus = 'Read';
         domEle.textContent = 'Read';
         domEle.style.backgroundColor = '#80ed99';
+        newCard.style.boxShadow = ' -1px 10px 39px -15px greenyellow';
+
     }
 }
 
