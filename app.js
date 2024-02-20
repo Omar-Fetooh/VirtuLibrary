@@ -8,7 +8,6 @@ const inputAuthor = document.querySelector('dialog form #author')
 const inputTitle = document.querySelector('dialog form #title')
 const inputPages = document.querySelector('dialog form #no-pages')
 const inputStatus = document.querySelector('dialog form #status')
-
 const myLibrary = [];
 
 //Object Constructor
@@ -16,8 +15,16 @@ function Book(author, title, noOfPages, readStatus) {
     this.author = author;
     this.title = title;
     this.noOfPages = noOfPages;
-    this.readStatus = readStatus;
+    // this.readStatus = readStatus;
     this.order = myLibrary.length;
+
+    if (inputStatus.checked) {
+        this.readStatus = "Read";
+    }
+    else {
+        this.readStatus = "Not Read";
+
+    }
 }
 
 function addBookToLibrary() {
@@ -26,9 +33,11 @@ function addBookToLibrary() {
     addBookForDisplay(newBook)
 }
 
-const book0 = new Book('omar Fetooh', 'dream land', 120, 'read')
+const book0 = new Book('Omar Fetooh', 'Dream Land', 120, 'Read');
+book0.readStatus = 'Read';
 myLibrary.push(book0)
-const book1 = new Book('omar Fetooh', 'wonderful Life', 180, 'read')
+const book1 = new Book('Omar Fetooh', 'Wonderful Life', 180, 'Read')
+book1.readStatus = 'Read';
 myLibrary.push(book1);
 
 
@@ -39,19 +48,22 @@ function createLabels(book, newCard) {
     const statusDisplay = document.createElement('div');
 
     authorDisplay.innerText = `Book Author:  ${book.author}`
-    titleDisplay.innerText = `book Title:  ${book.title}  `
-    npagesDisplay.innerText = `number of pages:  ${book.noOfPages}  `
-    statusDisplay.innerText = `status:  ${book.readStatus}  `
+    titleDisplay.innerText = `Book Title:  ${book.title}  `
+    npagesDisplay.innerText = `Number of Pages:  ${book.noOfPages}  `
+    statusDisplay.innerText = `Status:  ${book.readStatus}  `
 
     newCard.appendChild(authorDisplay);
     newCard.appendChild(titleDisplay);
     newCard.appendChild(npagesDisplay);
     newCard.appendChild(statusDisplay);
+
+
 }
 
 function addBookForDisplay(book) {
     const newCard = document.createElement('div');
     newCard.classList.add('card');
+
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
@@ -59,18 +71,28 @@ function addBookForDisplay(book) {
         deleteBook(book, deleteButton.parentElement);
     })
 
+    booksArea.appendChild(newCard);
+
     createLabels(book, newCard);
 
     const readStatusButton = document.createElement('button');
     readStatusButton.innerText = book.readStatus;
-    readStatusButton.addEventListener('click', () => {
-        toogleReading(book, readStatusButton);
-    })
-
-    booksArea.appendChild(newCard);
-
     newCard.appendChild(deleteButton);
     newCard.appendChild(readStatusButton);
+
+    if (book.readStatus === 'Read') {
+        readStatusButton.style.backgroundColor = "#80ed99";
+    }
+    else {
+        readStatusButton.style.backgroundColor = '#edede9';
+    }
+
+    readStatusButton.addEventListener('click', () => {
+        toogleReading(book, readStatusButton, statusDisplay);
+    })
+
+    const statusDisplay = document.querySelector('.card div:nth-of-type(4)')
+
 }
 
 function display() {
@@ -100,14 +122,18 @@ function deleteBook(book, domEle) {
     booksArea.removeChild(domEle)
 }
 
-function toogleReading(book, domEle) {
-    if (book.readStatus === 'read') {
-        book.readStatus = "not read";
-        domEle.textContent = "not read"
+function toogleReading(book, domEle, newCard) {
+    const lastChild = document.querySelector('newCard');
+    console.log(lastChild);
+    if (book.readStatus === 'Read') {
+        book.readStatus = "Not Read";
+        domEle.textContent = "Not Read"
+        domEle.style.backgroundColor = "#edede9";
     }
     else {
-        book.readStatus = 'read';
-        domEle.textContent = 'read';
+        book.readStatus = 'Read';
+        domEle.textContent = 'Read';
+        domEle.style.backgroundColor = '#80ed99';
     }
 }
 
