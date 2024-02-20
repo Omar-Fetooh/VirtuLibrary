@@ -2,6 +2,10 @@
 
 <a href="https://omar-fetooh.github.io/VirtuLibrary/">Live preview</a>
 
+
+<img src="./screencapture-file-C-Users-omarf-TOP-JavaScript-Course-VirtuLibrary-index-html-2024-02-20-21_13_59.png"
+    alt="Screen caputre of the project">
+
 ## Introduction
 This project is a small Library app where you can manage your collection of books.
 
