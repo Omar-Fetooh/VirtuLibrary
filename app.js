@@ -38,10 +38,10 @@ function createLabels(book, newCard) {
     const npagesDisplay = document.createElement('div');
     const statusDisplay = document.createElement('div');
 
-    authorDisplay.innerText = `Book Author: ${book.author}`
-    titleDisplay.innerText = `book Title:${book.title}  `
+    authorDisplay.innerText = `Book Author:  ${book.author}`
+    titleDisplay.innerText = `book Title:  ${book.title}  `
     npagesDisplay.innerText = `number of pages:  ${book.noOfPages}  `
-    statusDisplay.innerText = `status:${book.readStatus}  `
+    statusDisplay.innerText = `status:  ${book.readStatus}  `
 
     newCard.appendChild(authorDisplay);
     newCard.appendChild(titleDisplay);
