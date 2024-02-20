@@ -52,6 +52,12 @@ function addBookForDisplay(book) {
     npagesDisplay.innerText = `number of pages:  ${book.noOfPages}  `
     statusDisplay.innerText = `status:${book.readStatus}  `
 
+    const readStatusButton = document.createElement('button');
+    readStatusButton.innerText = book.readStatus;
+    readStatusButton.addEventListener('click', () => {
+        toogleReading(book, readStatusButton);
+    })
+
     booksArea.appendChild(newCard);
     // newCard.innerText = `Book Author: ${book.author}   book Title:${book.title}  number of pages:  ${book.noOfPages} status:${book.readStatus} `
     newCard.appendChild(authorDisplay);
@@ -59,6 +65,7 @@ function addBookForDisplay(book) {
     newCard.appendChild(npagesDisplay);
     newCard.appendChild(statusDisplay);
     newCard.appendChild(deleteButton);
+    newCard.appendChild(readStatusButton);
 }
 
 function display() {
@@ -86,6 +93,17 @@ display();
 function deleteBook(book, domEle) {
     myLibrary.splice(book.order, 1);
     booksArea.removeChild(domEle)
+}
+
+function toogleReading(book, domEle) {
+    if (book.readStatus === 'read') {
+        book.readStatus = "not read";
+        domEle.textContent = "not read"
+    }
+    else {
+        book.readStatus = 'read';
+        domEle.textContent = 'read';
+    }
 }
 
 // const deletedElement = document.querySelector('.booksArea div.card #order').innerTexts
