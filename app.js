@@ -23,7 +23,6 @@ function Book(author, title, noOfPages, readStatus) {
 function addBookToLibrary() {
     const newBook = new Book(inputAuthor.value, inputTitle.value, parseInt(inputPages.value), inputStatus.value);
     myLibrary.push(newBook);
-    // console.log(newBook)
     addBookForDisplay(newBook)
 }
 
@@ -31,6 +30,24 @@ const book0 = new Book('omar Fetooh', 'dream land', 120, 'read')
 myLibrary.push(book0)
 const book1 = new Book('omar Fetooh', 'wonderful Life', 180, 'read')
 myLibrary.push(book1);
+
+
+function createLabels(book, newCard) {
+    const authorDisplay = document.createElement('div');
+    const titleDisplay = document.createElement('div');
+    const npagesDisplay = document.createElement('div');
+    const statusDisplay = document.createElement('div');
+
+    authorDisplay.innerText = `Book Author: ${book.author}`
+    titleDisplay.innerText = `book Title:${book.title}  `
+    npagesDisplay.innerText = `number of pages:  ${book.noOfPages}  `
+    statusDisplay.innerText = `status:${book.readStatus}  `
+
+    newCard.appendChild(authorDisplay);
+    newCard.appendChild(titleDisplay);
+    newCard.appendChild(npagesDisplay);
+    newCard.appendChild(statusDisplay);
+}
 
 function addBookForDisplay(book) {
     const newCard = document.createElement('div');
@@ -42,15 +59,7 @@ function addBookForDisplay(book) {
         deleteBook(book, deleteButton.parentElement);
     })
 
-    const authorDisplay = document.createElement('div');
-    const titleDisplay = document.createElement('div');
-    const npagesDisplay = document.createElement('div');
-    const statusDisplay = document.createElement('div');
-
-    authorDisplay.innerText = `Book Author: ${book.author}`
-    titleDisplay.innerText = `book Title:${book.title}  `
-    npagesDisplay.innerText = `number of pages:  ${book.noOfPages}  `
-    statusDisplay.innerText = `status:${book.readStatus}  `
+    createLabels(book, newCard);
 
     const readStatusButton = document.createElement('button');
     readStatusButton.innerText = book.readStatus;
@@ -59,11 +68,7 @@ function addBookForDisplay(book) {
     })
 
     booksArea.appendChild(newCard);
-    // newCard.innerText = `Book Author: ${book.author}   book Title:${book.title}  number of pages:  ${book.noOfPages} status:${book.readStatus} `
-    newCard.appendChild(authorDisplay);
-    newCard.appendChild(titleDisplay);
-    newCard.appendChild(npagesDisplay);
-    newCard.appendChild(statusDisplay);
+
     newCard.appendChild(deleteButton);
     newCard.appendChild(readStatusButton);
 }
