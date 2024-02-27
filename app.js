@@ -14,19 +14,18 @@ const allCards = document.querySelectorAll('.card');
 
 const myLibrary = [];
 
-//Object Constructor
-function Book(author, title, noOfPages, readStatus) {
-    this.author = author;
-    this.title = title;
-    this.noOfPages = noOfPages;
-    // this.readStatus = readStatus;
-    this.order = myLibrary.length;
-
-    if (inputStatus.checked) {
-        this.readStatus = "Read";
-    }
-    else {
-        this.readStatus = "Not Read";
+class Book {
+    constructor(author, title, noOfPages) {
+        this.author = author;
+        this.title = title;
+        this.noOfPages = noOfPages;
+        this.order = myLibrary.length;
+        if (inputStatus.checked) {
+            this.readStatus = "Read";
+        }
+        else {
+            this.readStatus = "Not Read"
+        }
     }
 }
 
@@ -138,5 +137,3 @@ function toogleReading(book, domEle, newCard) {
 
     }
 }
-
-// const deletedElement = document.querySelector('.booksArea div.card #order').innerTexts
